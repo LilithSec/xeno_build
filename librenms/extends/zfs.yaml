@@ -1,0 +1,23 @@
+---
+fetch:
+  items:
+    extend:
+      url: '[% IF env.extend_url %][% env.extend_url %][% ELSE
+      %]https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/zfs[%
+      END %]'
+      dst: zfs
+  template: 1
+pkgs:
+  Debian:
+    - zlib1g-dev
+perl:
+  modules:
+    - File::Slurp
+    - MIME::Base64
+    - Gzip::Faster
+exec:
+  template: 1
+  commands:
+    - command: 'chmod +x "[% tmpdir %]/zfs"'
+    - command: 'mkdir -p [% config.snmp.extend_base_dir %]'
+    - command: 'cp "[% tmpdir %]/zfs" "[% config.snmp.extend_base_dir %]/zfs"'
