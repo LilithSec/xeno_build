@@ -1,0 +1,40 @@
+---
+templated_vars:
+  github_ref: '[% IF env.sagan_github_ref %][% env.sagan_github_ref %][% ELSE %]main[% END %]'
+fetch:
+  items:
+    sagan:
+      url: '[% IF env.sagan_url  %][% env.sagan_url %][% ELSE %]https://api.github.com/repos/quadrantsec/sagan/tarball/[% vars.github_ref %][% END %]'
+      dst: 'sagan.tgz'
+  template: 1
+exec:
+  commands:
+    - command: 'tar -zxvf sagan.tgz'
+    - command: 'mv `ls -d *sagan-*` sagan'
+    - command: autoreconf -vfi -I m4
+      dir: sagan
+    - command: ./configure --enable-bluedot --enable-geoip --enable-redis --enable-esmtp --enable-gzip
+    - command: make -j5
+    - command: make install
+    - command: make -j5
+      dir: cd tools
+    - command: make install
+    - command: '[% IF env.sagan_restart %]killall SaganMain[% ELSE %]echo not restarting[% END %]'
+  template: 1
+pkgs:
+  present:
+    FreeBSD:
+      - liblognorm
+      - pcre
+      - libesmtp
+      - hiredis
+      - json-c
+      - libmaxminddb
+    Debian:
+      - liblognrom-dev
+      - libpcre3-dev
+      - build-eesential
+      - libesmtp-dev
+      - libhiredis-dev
+      - libjson-c-dev
+      - libmaxminddb-dev
