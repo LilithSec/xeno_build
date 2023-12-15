@@ -1,0 +1,28 @@
+---
+fetch:
+  items:
+    extend:
+      url: '[% IF env.extend_url %][% env.extend_url %][% ELSE
+      %]https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/cape[%
+      END %]'
+      dst: cape
+  template: 1
+pkgs:
+  present:
+    Debian:
+      - zlib1g-dev
+perl:
+  modules:
+    - File::ReadBackwards
+    - JSON
+    - Config::Tiny
+    - DBI
+    - Time::Piece
+    - File::Slurp
+    - Gzip::Faster
+exec:
+  template: 1
+  commands:
+    - command: 'chmod +x "[% tmpdir %]/cape"'
+    - command: 'mkdir -p [% config.snmp.extend_base_dir %]'
+    - command: 'cp "[% tmpdir %]/cape" "[% config.snmp.extend_base_dir %]/cape"'
