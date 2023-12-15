@@ -1,0 +1,27 @@
+---
+fetch:
+  items:
+    extend:
+      url: '[% IF env.extend_url %][% env.extend_url %][% ELSE
+      %]https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/smart-v1[%
+      END %]'
+      dst: smart
+  template: 1
+pkgs:
+  Debian:
+    - smartmontools
+  FreeBSD:
+    - smartmontools
+  NetBSD:
+    - smartmontools
+  OpenBSD:
+    - smartmontools
+perl:
+  modules:
+    - MIME::Base64
+exec:
+  template: 1
+  commands:
+    - command: 'chmod +x "[% tmpdir %]/smart"'
+    - command: 'mkdir -p [% config.snmp.extend_base_dir %]'
+    - command: 'cp "[% tmpdir %]/smart" "[% config.snmp.extend_base_dir %]/smart"'
