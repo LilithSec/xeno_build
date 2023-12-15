@@ -1,11 +1,13 @@
 ---
+vars:
+  extend_name: cape
 fetch:
   items:
     extend:
       url: '[% IF env.extend_url %][% env.extend_url %][% ELSE
-      %]https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/cape[%
+      %]https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/[% vars.extend_name %][%
       END %]'
-      dst: cape
+      dst: '[% vars.extend_name %]'
   template: 1
 pkgs:
   present:
@@ -23,6 +25,6 @@ perl:
 exec:
   template: 1
   commands:
-    - command: 'chmod +x "[% tmpdir %]/cape"'
+    - command: 'chmod +x "[% tmpdir %]/[% vars.extend_name %]"'
     - command: 'mkdir -p [% config.snmp.extend_base_dir %]'
-    - command: 'cp "[% tmpdir %]/cape" "[% config.snmp.extend_base_dir %]/cape"'
+    - command: 'cp "[% tmpdir %]/[% vars.extend_name %]" "[% config.snmp.extend_base_dir %]/[% vars.extend_name %]"'

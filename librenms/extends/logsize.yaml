@@ -1,11 +1,13 @@
 ---
+vars:
+  extend_name: logsize
 fetch:
   items:
     extend:
       url: '[% IF env.extend_url %][% env.extend_url %][% ELSE
-      %]https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/logsize[%
+      %]https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/[% vars.extend_name %][%
       END %]'
-      dst: logsize
+      dst: '[% vars.extend_name %]'
   template: 1
 perl:
   modules:
@@ -17,6 +19,6 @@ perl:
 exec:
   template: 1
   commands:
-    - command: 'chmod +x "[% tmpdir %]/logsize"'
+    - command: 'chmod +x "[% tmpdir %]/[% vars.extend_name %]"'
     - command: 'mkdir -p [% config.snmp.extend_base_dir %]'
-    - command: 'cp "[% tmpdir %]/logsize" "[% config.snmp.extend_base_dir %]/logsize"'
+    - command: 'cp "[% tmpdir %]/[% vars.extend_name %]" "[% config.snmp.extend_base_dir %]/[% vars.extend_name %]"'

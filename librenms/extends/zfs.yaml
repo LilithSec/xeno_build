@@ -1,11 +1,13 @@
 ---
+vars:
+  extend_name: zfs
 fetch:
   items:
     extend:
       url: '[% IF env.extend_url %][% env.extend_url %][% ELSE
-      %]https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/zfs[%
+      %]https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/[% vars.extend_name %][%
       END %]'
-      dst: zfs
+      dst: '[% vars.extend_name %]'
   template: 1
 pkgs:
   present:
@@ -19,6 +21,6 @@ perl:
 exec:
   template: 1
   commands:
-    - command: 'chmod +x "[% tmpdir %]/zfs"'
+    - command: 'chmod +x "[% tmpdir %]/[% vars.extend_name %]"'
     - command: 'mkdir -p [% config.snmp.extend_base_dir %]'
-    - command: 'cp "[% tmpdir %]/zfs" "[% config.snmp.extend_base_dir %]/zfs"'
+    - command: 'cp "[% tmpdir %]/[% vars.extend_name %]" "[% config.snmp.extend_base_dir %]/[% vars.extend_name %]"'
