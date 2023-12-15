@@ -8,8 +8,9 @@ fetch:
       dst: zfs
   template: 1
 pkgs:
-  Debian:
-    - zlib1g-dev
+  present:
+    Debian:
+      - zlib1g-dev
 perl:
   modules:
     - File::Slurp

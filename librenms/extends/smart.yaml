@@ -8,14 +8,15 @@ fetch:
       dst: smart
   template: 1
 pkgs:
-  Debian:
-    - smartmontools
-  FreeBSD:
-    - smartmontools
-  NetBSD:
-    - smartmontools
-  OpenBSD:
-    - smartmontools
+  present:
+    Debian:
+      - smartmontools
+    FreeBSD:
+      - smartmontools
+    NetBSD:
+      - smartmontools
+    OpenBSD:
+      - smartmontools
 perl:
   modules:
     - MIME::Base64
