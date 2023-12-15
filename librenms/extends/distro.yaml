@@ -1,0 +1,15 @@
+---
+fetch:
+  items:
+    extend:
+      url: '[% IF env.extend_url %][% env.extend_url %][% ELSE
+      %]https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/distro[%
+      END %]'
+      dst: distro
+  template: 1
+exec:
+  template: 1
+  commands:
+    - command: 'chmod +x "[% tmpdir %]/distro"'
+    - command: 'mkdir -p [% config.snmp.extend_base_dir %]'
+    - command: 'cp "[% tmpdir %]/distro" "[% config.snmp.extend_base_dir %]/distro"'
