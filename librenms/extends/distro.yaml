@@ -14,4 +14,4 @@ exec:
   commands:
     - command: 'chmod +x "[% tmpdir %]/[% vars.extend_name %]"'
     - command: 'mkdir -p [% config.snmp.extend_base_dir %]'
-    - command: 'cp "[% tmpdir %]/[% vars.extend_name %]" "[% config.snmp.extend_base_dir %]/[% vars.extend_name %]"'
+    - command: 'cp "[% tmpdir %]/[% vars.extend_name %]" "/usr/bin/distro"'

@@ -1,0 +1,26 @@
+---
+vars:
+  extend_name: ifAlias
+fetch:
+  items:
+    extend:
+      url: '[% IF env.extend_url %][% env.extend_url %][% ELSE
+      %]https://raw.githubusercontent.com/librenms/librenms/master/scripts/ifAlias[%
+      END %]'
+      dst: '[% vars.extend_name %]'
+  template: 1
+pkgs:
+  present:
+    Debian:
+      - zlib1g-dev
+perl:
+  modules:
+    - File::Slurp
+    - MIME::Base64
+    - Gzip::Faster
+exec:
+  template: 1
+  commands:
+    - command: 'chmod +x "[% tmpdir %]/[% vars.extend_name %]"'
+    - command: 'mkdir -p [% config.snmp.extend_base_dir %]'
+    - command: 'cp "[% tmpdir %]/[% vars.extend_name %]" "[% config.snmp.extend_base_dir %]/[% vars.extend_name %]"'
