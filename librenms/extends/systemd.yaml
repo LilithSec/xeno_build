@@ -9,9 +9,10 @@ fetch:
       END %]'
       dst: '[% vars.extend_name %]'
   template: 1
-perl:
-  modules:
-    - JSON
+pkgs:
+  present:
+    Debian:
+      - python3
 exec:
   template: 1
   commands:

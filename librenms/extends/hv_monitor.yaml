@@ -1,0 +1,12 @@
+---
+pkgs:
+  present:
+    Debian:
+      - zlib1g-dev
+perl:
+  modules:
+    - JSON
+    - MIME::Base64
+    - Gzip::Faster
+    - Module::List
+    - HV::Monitor
