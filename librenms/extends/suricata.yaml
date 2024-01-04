@@ -1,0 +1,16 @@
+---
+pkgs:
+  present:
+    Debian:
+      - zlib1g-dev
+perl:
+  modules:
+    - JSON
+    - File::Path
+    - File::ReadBackwards
+    - Carp
+    - File::Slurp
+    - Time::Piece
+    - MIME::Base64
+    - Gzip::Faster
+    - Suricata::Monitoring
