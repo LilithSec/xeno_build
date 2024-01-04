@@ -1,0 +1,33 @@
+---
+pkgs:
+  present:
+    Debian:
+      - zlib1g-dev
+perl:
+  modules:
+    - JSON
+    - Config::Tiny
+    - DBI
+    - File::Slurp
+    - Config::Tiny
+    - Text::ANSITable
+    - YAML
+    - IPC::Cmd
+    - File::Spec
+    - Net::Subnet
+    - Mojolicious::Lite
+    - LWP::UserAgent
+    - File::MimeInfo::Magic
+    - File::Temp
+    - File::Copy
+    - POSIX
+    - Sys::Syslog
+    - HTTP::Request::Common
+    - Time::Piece
+    - File::Find::Rule
+    - File::Slurp
+    - Gzip::Faster
+    - MIME::Base64
+    - File::ReadBackwards
+    - Proc::PID::File
+    - Statistics::Lite
