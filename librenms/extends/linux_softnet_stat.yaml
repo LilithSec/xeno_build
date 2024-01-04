@@ -1,6 +1,6 @@
 ---
 vars:
-  extend_name: 'ntp-client'
+  extend_name: 'linux_softnet_stat'
 fetch:
   items:
     extend:
@@ -9,6 +9,16 @@ fetch:
       END %]'
       dst: '[% vars.extend_name %]'
   template: 1
+pkgs:
+  present:
+    Debian:
+      - zlib1g-dev
+perl:
+  modules:
+    - JSON
+    - File::Slurp
+    - MIME::Base64
+    - Gzip::Faster
 exec:
   template: 1
   commands:
