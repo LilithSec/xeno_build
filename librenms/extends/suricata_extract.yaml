@@ -31,3 +31,4 @@ perl:
     - File::ReadBackwards
     - Proc::PID::File
     - Statistics::Lite
+    - CAPE::Utils
