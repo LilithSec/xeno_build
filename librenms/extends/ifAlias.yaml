@@ -5,7 +5,7 @@ fetch:
   items:
     extend:
       url: '[% IF env.extend_url %][% env.extend_url %][% ELSE
-      %]https://raw.githubusercontent.com/librenms/librenms/master/scripts/ifAlias[%
+      %]https://raw.githubusercontent.com/librenms/librenms-agent/master/snmp/[% vars.extend_name %][%
       END %]'
       dst: '[% vars.extend_name %]'
   template: 1
